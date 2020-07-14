@@ -15,7 +15,7 @@ class Target_Process():
         self.tp_uri = tp_name
         self.token = token
 
-    def get_tests(self, entities):
+    def get_tests(self, entities): #this is mostly copy paste from the tutorial on the wiki so I need to figure out EXACTLY what it's doing
         ctx = ssl.SSLContext(ssl.PROTOCOL_TLSv1_2)
         request = urllib.request.Request(self.tp_uri + "TestPlans/" + entities + "/TestCases/?format=json&include=[ID,Name,TestSteps[Description],TestPlans]" + "&access_token=" + self.token)
         request.add_header('Content-Type', 'application/json')
@@ -27,7 +27,8 @@ def main():
 
     data = json.loads(request.get_tests(args.entity))
 
-    feature_lines = []
+    #Creates a list that just needs some finishing touches before it can be called a feature file
+    feature_lines = [] 
     feature_name = data["Items"][0]["TestPlans"]["Items"][0]["Name"]
     feature_lines.append(feature_name + "\n")
 
