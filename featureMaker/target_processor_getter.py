@@ -26,19 +26,8 @@ def main():
     request = Target_Process('https://bluefruit.tpondemand.com/api/v1/', "NTE6V0FMZWJ1c2dkTkZ1aDVKdzRSM0FHSGFYM3pJd0IraUhnR016UzRqS0NiUT0=")
 
     data = json.loads(request.get_tests(args.entity))
+    featureCompiler.json_parser(data)
 
-    #Creates a list that just needs some finishing touches before it can be called a feature file
-    feature_lines = [] 
-    feature_name = data["Items"][0]["TestPlans"]["Items"][0]["Name"]
-    feature_lines.append(feature_name + "\n")
-
-    for item in data["Items"]:
-            feature_lines.append("\n   : ")
-            feature_lines.append(item["Name"] + "\n")
-            for items in item["TestSteps"]["Items"]:
-                feature_lines.append("       " + items["Description"] + "\n")
-
-    featureCompiler.feature_compiler(feature_name, feature_lines)
 
 if(__name__ == "__main__"):
     main()
