@@ -33,7 +33,7 @@ def main():
     feature_lines.append(feature_name + "\n")
 
     for item in data["Items"]:
-            feature_lines.append("\n   Scenario: ")
+            feature_lines.append("\n   : ")
             feature_lines.append(item["Name"] + "\n")
             for items in item["TestSteps"]["Items"]:
                 feature_lines.append("       " + items["Description"] + "\n")
