@@ -15,7 +15,7 @@ def json_parser(data):
 
 
 def feature_compiler(feature_name, feature_lines):
-    with open("D:\\Code\\secureBootloaderAutomatedTests\\behaveTests\\features\\" + feature_name + ".feature", "w+") as w:
+    with open("D:\\Code\\secureBootloaderAutomatedTests\\features\\" + feature_name + ".feature", "w+") as w:
         w.write("Feature: ")
         for line in feature_lines:
             line = line.replace("</div>", "")

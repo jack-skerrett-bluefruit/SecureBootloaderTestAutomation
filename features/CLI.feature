@@ -3,10 +3,10 @@ Feature: CLI
     Scenario Outline: An erroneous command is ignored by the bootloader
         Given an STM32F412G discovery kit connected via USART
         And the kit is in bootloader mode with the ">" command prompt displayed
-        When [command] is entered
+        When &lt;command> is entered
         Then "Not recognised" is printed to the CLI
         
-        [command] "123456789", "@#][acsv", "dowhatisay", "halp"
+        Examples:|&lt;command>||"123456789"||"@#][acsv"||"dowhatisay"||"halp"|
 
     Scenario Outline: The command prompt ">" is printed to the CLI after every command input
         Given a STM32F412G discovery board connected via USART
@@ -14,7 +14,7 @@ Feature: CLI
         When [command] is entered
         Then the line awaiting the next command input is prefixed with a ">"
         
-        [command] "help", "flash 500", "nonsense"
+        Examples:|&lt;command>||"help"||"flash 500"||"nonsense"|
 
     Scenario: "flash" command allows firmware to be sent via serial
         Given an STM32F412G discovery kit connected via USART

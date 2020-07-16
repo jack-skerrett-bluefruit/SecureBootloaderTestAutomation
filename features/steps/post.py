@@ -2,9 +2,9 @@ from behave import *
 from arduino import arduino_controller
 import time
 
-com = "COM15"
-commander = arduino_controller.CommandWriter(com)
-time.sleep(2)
+#com = "COM15"
+#commander = arduino_controller.CommandWriter(com)
+#time.sleep(2)
 
 @given(u'a powered STM32F412G discovery kit connected via USART')
 def step_impl(context):
