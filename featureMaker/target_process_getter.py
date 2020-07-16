@@ -2,7 +2,7 @@ import urllib.request
 import ssl
 import json
 import argparse
-import featureCompiler
+import feature_compiler
 
 parser = argparse.ArgumentParser()
 parser.add_argument("entity", help = "The ID of the test plan you wish to extract data from", type = str, nargs="+")
@@ -24,7 +24,7 @@ def main():
     request = Target_Process()
     for item in args.entity:
         data = json.loads(request.get_tests(item))
-        featureCompiler.json_parser(data)
+        feature_compiler.json_parser(data)
 
 if(__name__ == "__main__"):
     main()
