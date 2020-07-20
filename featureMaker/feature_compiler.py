@@ -1,7 +1,15 @@
 from pathlib import Path
+from html import unescape
+import re
 
+def strip_html(line):
+    if not line: 
+        return line
+    html_tags = re.compile(r"<[^>]*>")
+    line = html_tags.sub("", line)
+    return unescape(line.replace("&nbsp;", " "))
 
-def json_parser(data):
+def json_formatter(data):
     feature_lines = [] 
     feature_name = data["Items"][0]["TestPlans"]["Items"][0]["Name"]
     feature_lines.append(feature_name + "\n")
@@ -22,9 +30,5 @@ def feature_compiler(feature_name, feature_lines):
     with open(file_path, "w+") as w:
         w.write("Feature: ")
         for line in feature_lines:
-            line = line.replace("</div>", "")
-            line = line.replace("<br>", "")
-            line = line.replace("<div>", "")
-            line = line.replace("&nbsp;", "")
-            line = line.replace("&gt;", ">")
+            line = strip_html(line)
             w.write(line)

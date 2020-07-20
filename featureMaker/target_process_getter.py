@@ -24,7 +24,7 @@ def main():
     request = Target_Process()
     for item in args.entity:
         data = json.loads(request.get_tests(item))
-        feature_compiler.json_parser(data)
+        feature_compiler.json_formatter(data)
 
 if(__name__ == "__main__"):
     main()
